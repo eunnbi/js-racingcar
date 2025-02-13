@@ -2,10 +2,6 @@ import Car from "../src/domain/Car";
 import RacingGame, { InvalidRacingTotalRound } from "../src/domain/RacingGame";
 
 describe("자동차 경주 테스트", () => {
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it("자동차 경주는 기본적으로 최대 5라운드로 진행된다.", () => {
     const cars = [new Car("벤츠"), new Car("BMW"), new Car("아우디")];
 
