@@ -36,12 +36,9 @@ class RacingGame {
 
   getWinners() {
     const maxPosition = Math.max(...this.cars.map((car) => car.position));
-    const winners = [];
-
-    for (const car of this.cars) {
-      if (car.position !== maxPosition) continue;
-      winners.push(car.name);
-    }
+    const winners = this.cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
 
     return winners;
   }
