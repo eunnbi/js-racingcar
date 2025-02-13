@@ -86,11 +86,13 @@ describe("자동차 경주 테스트", () => {
   it("자동차 경주 우승자는 가장 멀리 전진한 자동차들이다.", () => {
     const cars = [new Car("벤츠"), new Car("BMW"), new Car("아우디")];
 
-    const racingGame = new RacingGame(cars);
+    const raceConditions = [true, false, true]; // 라운드 1: 벤츠, 아우디 전진, BMW 멈춤
 
-    cars[0].position = 5;
-    cars[1].position = 3;
-    cars[2].position = 5;
+    const canMove = () => raceConditions.shift();
+    const racingGame = new RacingGame(cars, 1, canMove);
+
+    const raceIterator = racingGame.runRace();
+    while (!raceIterator.next().done) {}
 
     const winners = racingGame.getWinners();
 

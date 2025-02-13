@@ -1,6 +1,6 @@
 class Car {
-  name;
-  position = 0;
+  #name;
+  #position = 0;
 
   static NAME_MIN_LENGTH = 1;
   static NAME_MAX_LENGTH = 5;
@@ -10,12 +10,20 @@ class Car {
       throw new InvalidCarName();
     }
 
-    this.name = name;
+    this.#name = name;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  get position() {
+    return this.#position;
   }
 
   moveForward(canMove = () => true) {
     if (!canMove()) return;
-    this.position += 1;
+    this.#position += 1;
   }
 
   #isValidName(name) {

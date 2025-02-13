@@ -4,7 +4,8 @@ describe("자동차 클래스 테스트", () => {
   it("자동차는 이름과 위치 값을 갖는다.", () => {
     const car = new Car("강은비");
 
-    expect(car).toEqual({ name: "강은비", position: 0 });
+    expect(car.name).toBe("강은비");
+    expect(car.position).toBe(0);
   });
 
   test.each(["", "asdfsdf", 1235])(

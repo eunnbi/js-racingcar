@@ -1,16 +1,16 @@
 class RacingGame {
-  cars = [];
-  round = 0;
-  totalRound;
-  canMove;
+  #cars = [];
+  #round = 0;
+  #totalRound;
+  #canMove;
 
   constructor(cars, totalRound = 5, canMove = () => true) {
     if (!this.#isValidTotalRound(totalRound)) {
       throw new InvalidRacingTotalRound();
     }
-    this.cars = cars;
-    this.totalRound = totalRound;
-    this.canMove = canMove;
+    this.#cars = cars;
+    this.#totalRound = totalRound;
+    this.#canMove = canMove;
   }
 
   #isValidTotalRound(totalRound) {
@@ -21,22 +21,22 @@ class RacingGame {
   }
 
   *runRace() {
-    while (this.round < this.totalRound) {
-      this.round++;
+    while (this.#round < this.#totalRound) {
+      this.#round++;
       yield this.#getRoundResult();
     }
   }
 
   #getRoundResult() {
-    return this.cars.map((car) => {
-      car.moveForward(this.canMove);
+    return this.#cars.map((car) => {
+      car.moveForward(this.#canMove);
       return { name: car.name, position: car.position };
     });
   }
 
   getWinners() {
-    const maxPosition = Math.max(...this.cars.map((car) => car.position));
-    const winners = this.cars
+    const maxPosition = Math.max(...this.#cars.map((car) => car.position));
+    const winners = this.#cars
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name);
 
